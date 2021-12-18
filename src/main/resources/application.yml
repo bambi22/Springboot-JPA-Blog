@@ -1,0 +1,33 @@
+server:
+  port:  8082
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521/xe
+    username: cos
+    password: cos
+  
+  mvc:
+    view:
+      prefix:  /WEB-INF/views/
+      suffix: .jsp 
+      
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+    show-sql: true
+    properties:
+      hibernate.enable_lazy_load_no_trans: true  
+      hibernate.format_sql: true
+
+
+
+
+
