@@ -1,12 +1,16 @@
 server:
   port:  8082
   servlet:
-    context-path: /
+    context-path: /blog
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
 
 spring:
   datasource:
     driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@localhost:1521/xe
+    url: jdbc:oracle:thin:@localhost:1521:xe
     username: cos
     password: cos
   
@@ -16,16 +20,22 @@ spring:
       suffix: .jsp 
       
   jpa:
-    open-in-view: false
+    generate-ddl: true
+    open-in-view: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      use-new-id-generator-mappings: false
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl 
+      use-new-id-generator-mappings: false #jpa의 넘버링 전략 따르지 않음.
     show-sql: true
     properties:
-      hibernate.enable_lazy_load_no_trans: true  
-      hibernate.format_sql: true
+      hibernate:
+        format_sql: true
+        #dialect: org.hibernate.dialect.Oracle10gDialect
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
 
 
 

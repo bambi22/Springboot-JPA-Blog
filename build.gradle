@@ -32,6 +32,7 @@ dependencies {
 	implementation 'javax.servlet:jstl'											// JSTL
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'		// JSP 탬플릿 엔진, 부트는 JSP 기본제공X
 	implementation 'org.springframework.security:spring-security-taglibs'		// Security 태그 라이브러리
+	implementation 'javax.persistence:javax.persistence-api:2.2'
 }
 
 test {
