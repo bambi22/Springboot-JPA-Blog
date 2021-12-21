@@ -41,7 +41,6 @@ public class Board {
 	@Lob //대용량 데이터
 	private String content; //썸머노트 라이브러리 <html>태그가 섞여서 디자인 됨.
 	
-	@ColumnDefault("0")
 	private int count;		//조회수
 	
 	// Many = Board, One = Blogger, 기본이 즉시 로딩
