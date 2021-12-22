@@ -37,10 +37,22 @@ public class UserService {
 				.orElseThrow(()->{
 					return new IllegalArgumentException("회원 찾기 실패");
 				});
-		String rawPw = user.getPassword();
-		String encPw = encoder.encode(rawPw);
-		persistace.setPassword(encPw);
-		persistace.setEmail(user.getEmail());
+		
+		// Validate 체크
+		if(persistace.getOauth() == null || persistace.getOauth().equals("")) {
+			String rawPw = user.getPassword();
+			String encPw = encoder.encode(rawPw);
+			persistace.setPassword(encPw);
+			persistace.setEmail(user.getEmail());
+		}
+	}
+
+	@Transactional
+	public Blogger findOne(String username) { // orElseGet() 데이터가 없을 때 빈 객체 리턴
+		Blogger user = userRepository.findByUsername(username).orElseGet(()->{
+			return new Blogger();
+		});
+		return user;
 	}
 
 	/*

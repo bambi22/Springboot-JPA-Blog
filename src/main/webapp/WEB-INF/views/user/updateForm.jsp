@@ -5,19 +5,25 @@
 	<form>
 		<input type="hidden" id="id" value="${principal.user.id }" />
 		<div class="form-group">
-			<label for="username">Username</label> 
-			<input value="${principal.user.username }" type="text" class="form-control" placeholder="Enter username" id="username" readOnly>
+			<label for="username">Username</label> <input value="${principal.user.username }" type="text" class="form-control" placeholder="Enter username" id="username" readOnly>
 		</div>
-		
-		<div class="form-group">
-			<label for="password">Password</label> 
-			<input type="password" class="form-control" placeholder="Enter password" id="password">
-		</div>
-		
-		<div class="form-group">
-			<label for="email">Email address</label> 
-			<input value="${principal.user.email }" type="email" class="form-control" placeholder="Enter email" id="email">
-		</div>
+
+		<c:choose>
+			<c:when test="${empty principal.user.oauth }">
+				<div class="form-group">
+					<label for="password">Password</label> <input type="password" class="form-control" placeholder="Enter password" id="password">
+				</div>
+				<div class="form-group">
+					<label for="email">Email address</label> <input value="${principal.user.email }" type="email" class="form-control" placeholder="Enter email" id="email" >
+				</div>
+			</c:when>
+
+			<c:otherwise>
+				<div class="form-group">
+					<label for="email">Email address</label> <input value="${principal.user.email }" type="email" class="form-control" placeholder="Enter email" id="email" readOnly>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</form>
 	<button id="btn-update" class="btn btn-primary">회원수정 완료</button>
 </div>

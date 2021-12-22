@@ -34,7 +34,7 @@ public class Blogger {
 	@SequenceGenerator(name="BLOGGER_SEQ", sequenceName="USER_SEQ", initialValue=1, allocationSize=1)
 	private int id;
 	
-	@Column(nullable = false, length = 30, unique=true)
+	@Column(nullable = false, length = 100, unique=true)
 	private String username; //아이디
 	
 	@Column(nullable = false, length = 100)
@@ -46,6 +46,8 @@ public class Blogger {
 	//@ColumnDefault("'user")
 	@Enumerated(EnumType.STRING)
 	private RoleType role; //역할별 권한을 나눌 수 있음 (admin, user, manager), Enum을 쓰는 게 좋음 (데이터의 도메인=범위를 설정, 강제성)
+	
+	private String oauth; //kakao, google
 	
 	@CreationTimestamp // 시간 자동 입력
 	private Timestamp createDate;
