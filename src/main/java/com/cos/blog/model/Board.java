@@ -13,11 +13,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,7 +53,9 @@ public class Board {
 	
 	//기본이 지연로딩
 	@OneToMany(mappedBy = "board", fetch = FetchType.EAGER) // mappedBy : 연관관계 주인이 아니다 FK 아님, DB에 컬럼 만들지 않음, JOIN을 위해서만 사용
-	private List<Reply> reply;
+	@JsonIgnoreProperties({"board", "user"})		// 무한 참조 방지, Reply의 Board Getter 동작 X
+	@OrderBy("id desc")
+	private List<Reply> replys;
 	
 	@CreationTimestamp
 	private Timestamp createDate;
