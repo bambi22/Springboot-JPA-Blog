@@ -4,11 +4,11 @@
 <div class="container">
 	<form>
 		<div class="form-group">
-			<label for="username">Username</label> <input type="text" class="form-control" placeholder="Enter username" id="username">
+			<label for="username">Username</label> <input type="text" class="form-control" placeholder="Enter username" id="username" required="required">
 		</div>
 		
 		<div class="form-group">
-			<label for="password">Password</label> <input type="password" class="form-control" placeholder="Enter password" id="password">
+			<label for="password">Password</label> <input type="password" class="form-control" placeholder="Enter password" id="password" required="required">
 		</div>
 		
 		<div class="form-group">
