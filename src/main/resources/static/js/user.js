@@ -25,9 +25,12 @@ let index = {
 			contentType: "application/json; charset=utf-8",
 			dataType: "json" //응답 왔을 시 기본적으로 버퍼에 담겨와서 문자열 
 		}).done(function(resp){
-			//console.log(resp);
-			alert("회원가입이 완료되었습니다.");
+			if(resp.status === 500){
+				alert("회원가입에 실패하였습니다.");
+			}else{
+			alert("회원가입이 완료되었습니다.");				
 			location.href = "/";
+			}
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		}); 
